@@ -1,0 +1,14 @@
+{
+  "name": "dota-discord-bot",
+  "version": "1.0.0",
+  "description": "discord bot for tracking games",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "manuel morales",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^14.1.2"
+  }
+}
