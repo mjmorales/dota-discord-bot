@@ -13,3 +13,7 @@ commands:
 .PHONY: build
 build: 
 	docker-compose build
+
+.PHONY: config
+config: 
+	cp config.json.example config.json
