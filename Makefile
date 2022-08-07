@@ -1,6 +1,6 @@
 .PHONY: serve
 serve:
-	docker-compose up
+	docker-compose up -d
 
 .PHONY: stop
 stop:
