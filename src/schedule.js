@@ -2,6 +2,7 @@ const { ToadScheduler, SimpleIntervalJob, AsyncTask } = require('toad-scheduler'
 const scheduler = new ToadScheduler()
 const { db } = require('./db.js');
 const { EmbedBuilder } = require('discord.js');
+const { channel_id } = require("../config.json");
 
 const createEmbed = (record) => {
   const timestamp = new Date(Date.parse(record.starts_at) - 14400000)
@@ -35,7 +36,7 @@ module.exports = {
           .rpc('fetch_upcoming_matches', {}, { count: 'exact' })
           if (error) console.error(error)
 
-          const channel = await client.channels.fetch('891171298363986013');
+          const channel = await client.channels.fetch(channel_id);
           const embeds = Array.from(data, record => { return createEmbed(record) })
           if(embeds.length > 0) channel.send({ embeds: embeds });
         });
@@ -44,7 +45,7 @@ module.exports = {
     )
     const jobs = [
       new SimpleIntervalJob({ minutes: 60, runImmediately: true, }, importMatchesTask),
-      new SimpleIntervalJob({ minutes: 5, runImmediately: true, }, alertUpcomingTask),
+      new SimpleIntervalJob({ minutes: 10, runImmediately: true, }, alertUpcomingTask),
     ]
     jobs.map(job => scheduler.addSimpleIntervalJob(job))
   }
