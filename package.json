@@ -9,6 +9,9 @@
   "author": "manuel morales",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^14.1.2"
+    "@supabase/supabase-js": "^1.35.6",
+    "dayjs": "^1.11.4",
+    "discord.js": "^14.1.2",
+    "toad-scheduler": "^1.6.1"
   }
 }
