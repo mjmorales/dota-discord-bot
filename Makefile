@@ -6,6 +6,10 @@ serve:
 stop:
 	docker-compose down
 
+.PHONY: restart
+restart:
+	docker-compose restart
+
 .PHONY: commands
 commands:
 	docker-compose run --rm dota-game-tracker commands
