@@ -44,7 +44,7 @@ module.exports = {
       (err) => { console.error(err) }
     )
     const jobs = [
-      new SimpleIntervalJob({ minutes: 30, runImmediately: true, }, importMatchesTask),
+      new SimpleIntervalJob({ minutes: 60, runImmediately: true, }, importMatchesTask),
       new SimpleIntervalJob({ minutes: 10, runImmediately: true, }, alertUpcomingTask),
     ]
     jobs.map(job => scheduler.addSimpleIntervalJob(job))
