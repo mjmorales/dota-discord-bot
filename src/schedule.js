@@ -37,8 +37,7 @@ module.exports = {
           if (error) console.error(error)
 
           const channel = await client.channels.fetch(channel_id);
-          const embeds = Array.from(data, record => { return createEmbed(record) })
-          if(embeds.length > 0) channel.send({ embeds: embeds });
+          if(data.length > 0) data.forEach(record => { channel.send({ embeds: [createEmbed(record)] })});
         });
       },
       (err) => { console.error(err) }
