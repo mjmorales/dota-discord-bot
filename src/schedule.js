@@ -37,14 +37,23 @@ module.exports = {
           if (error) console.error(error)
 
           const channel = await client.channels.fetch(channel_id);
-          if(data.length > 0) data.forEach(record => { channel.send({ embeds: [createEmbed(record)] })});
+          if(data.length > 0) {
+            data.forEach(async record => { 
+              channel.send({ embeds: [createEmbed(record)] })
+              const { data, error } = await db
+              .from('matches')
+              .update({ notified: true })
+              .match({ hash: record.hash })
+            });
+            if (error) console.log(error)
+          }
         });
       },
       (err) => { console.error(err) }
     )
     const jobs = [
       new SimpleIntervalJob({ minutes: 60, runImmediately: true, }, importMatchesTask),
-      new SimpleIntervalJob({ minutes: 10, runImmediately: true, }, alertUpcomingTask),
+      new SimpleIntervalJob({ minutes: 1, runImmediately: true, }, alertUpcomingTask),
     ]
     jobs.map(job => scheduler.addSimpleIntervalJob(job))
   }
